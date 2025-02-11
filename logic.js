@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             g.append("circle")
                 .attr("cx", projection([85.3240, 27.7172])[0])
                 .attr("cy", projection([85.3240, 27.7172])[1])
-                .attr("r", "4")
+                .attr("r", "0.4vw")
                 .attr("fill", "#34d399");
         });
     
