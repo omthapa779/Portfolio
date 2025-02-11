@@ -1,0 +1,11 @@
+/* util.css */
+:root {
+    --paper: #f4f1ea;
+    --text-color: #1a1a1a;
+    --grid-color: rgba(26, 26, 26, 0.8);
+    --secondary-color: #34d399;
+}
+
+.hidden {
+    display: none;
+}
