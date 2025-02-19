@@ -3,7 +3,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--paper);
-    font-family: 'Montserrat', sans-serif;
     overflow: hidden;
 }
 
@@ -99,6 +98,8 @@ body {
 .map-container:hover {
     transform: scale(1.1);
 }
+
+
 
 @media (max-width: 999px){
     .country{

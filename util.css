@@ -1,19 +1,63 @@
 /* util.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
     --paper: #f4f1ea;
     --text-color: #1a1a1a;
     --grid-color: rgba(26, 26, 26, 0.8);
     --secondary-color: #34d399;
+
+    --primary_font:'Montserrat', sans-serif;
 }
 
 .hidden {
     display: none;
 }
 
+h1{
+    font-family: var(--primary_font);
+    font-size: 20vw;
+}
 h3{
+    font-family: var(--primary_font);
     font-size: 1.5vw;
 }
 
+/* widths */
+.w_100{
+    width: 100%;
+}
+
+/* heights */
+.h_fc{
+    height: fit-content;
+}
+.h_100vh{
+    height: 100vh;
+}
+
+/* font_weights */
+.font_w700{
+    font-weight: 700;
+}
+.font_w900{
+    font-weight: 900;
+}
+
+/* flexs */
+.flex_cl{
+    display: flex;
+    flex-direction: column;
+}
+
+/* justifys */
+.justify_c{
+    justify-content: center;
+}
+
+/* aligns */
+.align_c{
+    align-items: center;
+}
 @media (max-width: 999px){
     h3{
         font-size: 2.4vw;
