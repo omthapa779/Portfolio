@@ -9,6 +9,11 @@ html,body {
     background-color: var(--paper);
     overflow-x: hidden;
 }
+::selection{
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-radius: 0.8vw;
+}
 :root {
     --paper: #f4f1ea;
     --text-color: #1a1a1a;
