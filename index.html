@@ -5,27 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OHM.</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Adding TopoJSON and D3 for map rendering -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
-    <!-- utility classes for css -->
     <link rel="stylesheet" href="util.css">
-    <!-- extra css -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css">
     <link rel="shortcut icon" href="./resources/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <div class="loading-screen hidden">
-        <!-- Large grid overlay -->
         <div class="grid-overlay"></div>
-        
-        <!-- Map container -->
         <div class="map-container">
             <svg id="world-map"></svg>
         </div>
-        
-        <!-- Centered coordinates -->
         <div class="coordinates">
             <h3><span id="latitude">00.0000</span>° N, <span id="longitude">00.0000</span>° E</h3>
         </div>
@@ -34,17 +26,19 @@
     <main class="w_100 h_fc">
         <section class="hero_page w_100 h_100vh flex_cl justify_sb align_c">
             <div class="name_emoji_holder h_fc flex align_fe position_r mright_5">
-                <h1 class="font_w900">OHM</h1>
-
+                <div class="liquid-text-container" style="width: 60vw; height: 35vh;">
+                    <canvas id="liquidCanvas"></canvas>
+                </div>
+            
                 <div class="emoji_holder w_100 h_40vh flex justify_fe position_a index_1">
-                  <img src="./resources/om_emoji.png" alt="Om Emoji" class="emoji h_100">
+                    <img src="./resources/om_emoji.png" alt="Om Emoji" class="emoji h_100">
                 </div>
             </div>
 
             <div class="roles_section w_100 h_fc flex_cl justify_c align_c">
                 <div class="roles_holder h_fc text_ac w_20">
-                  <h3 class="w_100 text_al">Full Stack Developer</h3>
-                  <h3 class="w_100 text_ar">Graphic Designer</h3>
+                    <h3 class="w_100 text_al">Full Stack Developer</h3>
+                    <h3 class="w_100 text_ar">Graphic Designer</h3>
                 </div>
             </div>
 

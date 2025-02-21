@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    backface-visibility: hidden;
 }
 html,body {
     width: 100%;
@@ -85,7 +86,7 @@ html,body {
     pointer-events: none;
 }
 
-
+/* Loading Screen Fade Out */
 .loading-screen.fade-out {
     animation: fadeOut 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
@@ -96,17 +97,16 @@ html,body {
         visibility: hidden;
     }
 }
-
+/* Map Zoom Animation */
 .map-container.zoom {
     animation: zoomToPoint 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes zoomToPoint {
     to {
-        /* These values are calibrated for Kathmandu's position */
         transform: scale(4) translate(41.25%, -35%);
     }
-}
+}  
 
 .map-container.zoom {
     animation: zoomToPoint 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -133,18 +133,300 @@ html,body {
     border: none;
 }
 
+/* Advanced Button Effects */
+.primary_button, .secondary_s_button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform, box-shadow, background-color;
+    isolation: isolate;
+    z-index: 1;
+}
+
+/* Base button styles with common properties */
+.primary_button, .secondary_s_button {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                background-color 0.3s ease;
+    font-family: var(--primary_font);
+}
+
+/* Primary Button Hover Effect - Map Coordinates Style */
+.primary_button {
+    background-color: var(--secondary-color);
+    color: var(--paper);
+    border-radius: 0.2vw;
+}
+
+.primary_button::before,
+.primary_button::after {
+    content: '';
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+/* Grid pattern effect - like your map grid */
+.primary_button::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.1) 0.08vw, transparent 0.08vw),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0.08vw, transparent 0.08vw);
+    background-size: 3vw 3vw;
+    z-index: 1;
+    transform: scale(1.2);
+}
+
+/* Coordinate-like glowing element */
+.primary_button::after {
+    content: attr(data-lat) '° N, ' attr(data-long) '° E';
+    position: absolute;
+    bottom: 0.4vh;
+    right: 0.4vw;
+    font-size: 0.6vw;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    letter-spacing: 0.05vw;
+    z-index: 2;
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+    transform: translateY(1vh);
+}
+
+.primary_button:hover {
+    transform: translateY(-0.3vh) scale(1.02);
+    background-color: var(--secondary-color);
+    box-shadow: 
+        0 0.5vh 1vh rgba(52, 211, 153, 0.2),
+        0 0 2vw rgba(52, 211, 153, 0.1);
+}
+
+.primary_button:hover::before {
+    opacity: 1;
+    transform: scale(1);
+    animation: gridScan 3s linear infinite;
+}
+
+.primary_button:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Secondary Button Hover Effect - Pulse Scan */
+.secondary_s_button {
+    background-color: var(--text-color);
+    color: var(--paper);
+    border-radius: 0.2vw;
+}
+
+.secondary_s_button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, 
+        rgba(52, 211, 153, 0.8) 0%, 
+        rgba(52, 211, 153, 0.3) 40%,
+        transparent 70%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1;
+    border-radius: 50%;
+}
+
+.secondary_s_button i {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.secondary_s_button:hover {
+    background-color: var(--text-color);
+    transform: scale(1.1);
+    box-shadow: 
+        0 0.5vh 1vh rgba(26, 26, 26, 0.2),
+        0 0 1vw rgba(26, 26, 26, 0.1);
+}
+
+.secondary_s_button:hover::before {
+    width: 200%;
+    height: 200%;
+    opacity: 0.6;
+    animation: scanPulse 2s infinite;
+}
+
+.secondary_s_button:hover i {
+    transform: rotate(90deg);
+}
+
+/* Active States */
+.primary_button:active {
+    transform: scale(0.98);
+    box-shadow: 0 0.2vh 0.5vh rgba(52, 211, 153, 0.1);
+}
+
+.secondary_s_button:active {
+    transform: scale(0.95);
+}
+
+/* Animations */
+@keyframes gridScan {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 3vw 3vw;
+    }
+}
+
+@keyframes scanPulse {
+    0% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(0.1);
+    }
+    50% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Base transition for all hero elements */
+.hero_page {
+    overflow: hidden;
+}
+.hero_page > * {
+    will-change: transform, opacity, filter;
+}
+
+.liquid-text-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(70px);
+    filter: blur(10px);
+    transition: opacity 0.85s cubic-bezier(0.215, 0.610, 0.355, 1.000),
+                transform 0.85s cubic-bezier(0.215, 0.610, 0.355, 1.000),
+                filter 0.85s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+  /* Base text styling - this will be the visible text */
+  .liquid-text-base {
+    display: inline-block;
+    position: relative;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 3;
+     transition: opacity 0.3s ease;
+    will-change: opacity;
+  }
+  
+  /* Text for liquid effect - this will be dissolved */
+  .liquid-text-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    overflow: hidden;
+  }
+  
+  /* Filter for the liquid effect */
+  .liquid-text-effect canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+  }
+  
+  /* Hide original text when hovering the container */
+  .liquid-text-container:hover .liquid-text-base {
+    opacity: 0;
+  }
+
+/* Trigger animations when body has the class */
+.animations-ready .rise-element{
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+.animations-ready .liquid-text-container {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
 /* hero_page emoji */
 .emoji_holder   {
     margin-left: 10vw;
+    pointer-events: none;
 }
 .hero_page{
-    padding-bottom: 10vh;
-}
-.emoji{
-    margin-top: 15vh;
+    padding: 10vh 10vw;
 }
 .roles_section{
     margin-bottom: 20vh;
+}
+
+/* Subtle floating animation for the emoji */
+.emoji {
+    margin-top: 15vh;
+    will-change: transform;
+    animation: float 6s ease-in-out infinite;
+    animation-play-state: paused;
+}
+
+.animations-ready .emoji {
+    animation-play-state: running;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Animation Base Styles */
+.rise-element {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(6px);
+    will-change: transform, opacity, filter;
+    transition: opacity 0.85s cubic-bezier(0.215, 0.610, 0.355, 1.000),
+                transform 0.85s cubic-bezier(0.215, 0.610, 0.355, 1.000),
+                filter 0.85s cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 
 @media (max-width: 999px){
@@ -166,9 +448,6 @@ html,body {
     }
     .works_hero{
         width: 50vw;
-    }
-    .hero_page{
-        padding: 10vh 10vw;
     }
     .name_emoji_holder{
         margin-right: 0vw;
