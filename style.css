@@ -1,9 +1,21 @@
 /* style.css */
-body {
+*{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+html,body {
+    width: 100%;
     background-color: var(--paper);
-    overflow: hidden;
+    overflow-x: hidden;
+}
+:root {
+    --paper: #f4f1ea;
+    --text-color: #1a1a1a;
+    --grid-color: rgba(26, 26, 26, 0.8);
+    --secondary-color: #0e9039;
+
+    --primary_font:'Montserrat', sans-serif;
 }
 
 .loading-screen {
@@ -15,6 +27,7 @@ body {
     align-items: center;
     background-color: var(--paper);
     overflow: hidden;
+    z-index: 999;
 }
 
 .grid-overlay {
@@ -99,14 +112,84 @@ body {
     transform: scale(1.1);
 }
 
+/* buttons */
+.primary_button{
+    width: 20vw;
+    height: 7vh;
+    background-color: var(--secondary-color);
+    color: var(--paper);
+}
+.secondary_s_button{
+    width: 3vw;
+    height: 7vh;
+    background-color: var(--text-color);
+    color: var(--paper);
+    outline: none;
+    border: none;
+}
 
+/* hero_page emoji */
+.emoji_holder   {
+    margin-left: 10vw;
+}
+.hero_page{
+    padding-bottom: 10vh;
+}
+.emoji{
+    margin-top: 15vh;
+}
+.roles_section{
+    margin-bottom: 20vh;
+}
 
 @media (max-width: 999px){
     .country{
         stroke-width: 0.15vw;
     }
+    .emoji_holder {
+        margin-left: 16vw;
+        height: 27vh;
+    }
+    .roles_holder{
+        width: 45vw;
+    }
+    .primary_button{
+        width: 35vw;
+    }
+    .secondary_s_button{
+        width: 10vw;
+    }
+    .works_hero{
+        width: 50vw;
+    }
+    .hero_page{
+        padding: 10vh 10vw;
+    }
+    .name_emoji_holder{
+        margin-right: 0vw;
+    }
 }
 @media (max-width: 699px){
+    .emoji_holder {
+        margin-left: -15vw;
+        height: 27vh;
+    }
+    .emoji {
+        margin-top: 25vh;
+    }
+    .primary_button{
+        width: 55vw;
+    }
+    .secondary_s_button{
+        width: 15vw;
+    }
+    .works_hero{
+        width: 80vw;
+    }
+    .roles_section {
+        margin-bottom: 0vh;
+        margin-top: 15vh;
+    }
     .country{
         stroke-width: 0.2vw;
     }

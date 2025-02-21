@@ -1,5 +1,5 @@
 /* util.css */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arizonia&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
     --paper: #f4f1ea;
     --text-color: #1a1a1a;
@@ -7,6 +7,7 @@
     --secondary-color: #34d399;
 
     --primary_font:'Montserrat', sans-serif;
+    --secondary_font: "Arizonia";
 }
 
 .hidden {
@@ -21,8 +22,21 @@ h3{
     font-family: var(--primary_font);
     font-size: 1.5vw;
 }
+h4{
+    font-family: var(--primary_font);
+    font-size: 1.2vw;;
+}
+a{
+    text-decoration: none;
+}
 
 /* widths */
+.w_20{
+    width: 20vw;
+}
+.w_25{
+    width: 25vw;
+}
 .w_100{
     width: 100%;
 }
@@ -31,11 +45,26 @@ h3{
 .h_fc{
     height: fit-content;
 }
+.h_20vh{
+    height: 20vh;
+}
+.h_40vh{
+    height: 40vh;
+}
+.h_100{
+    height: 100%;
+}
 .h_100vh{
     height: 100vh;
 }
 
 /* font_weights */
+.font_w400{
+    font-weight: 400;
+}
+.font_w500{
+    font-weight: 500;
+}
 .font_w700{
     font-weight: 700;
 }
@@ -44,6 +73,9 @@ h3{
 }
 
 /* flexs */
+.flex{
+    display: flex;
+}
 .flex_cl{
     display: flex;
     flex-direction: column;
@@ -53,18 +85,93 @@ h3{
 .justify_c{
     justify-content: center;
 }
+.justify_sb{
+    justify-content: space-between;
+}
+.justify_fe{
+    justify-content: flex-end;
+}
 
 /* aligns */
 .align_c{
     align-items: center;
 }
+.align_fe{
+    align-items: flex-end;
+}
+
+/* line heights */
+.line_h0{
+    line-height: 0%;
+}
+
+/* text aligns */
+.text_ac{
+    text-align: center;
+}
+.text_al{
+    text-align: left;
+}
+.text_ar{
+    text-align: right;
+}
+
+/* gaps */
+.gap_xs{
+    gap: 0.5vw;
+}
+
+/* paddings */
+.padding_vs{
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+/* positions */
+.position_r{
+    position: relative;
+}
+.position_a{
+    position: absolute;
+}
+
+/* margins */
+.mright_5{
+    margin-right: 5vw;
+}
+.mtop_s{
+    margin-top: 2vh;
+}
+
+/* fonts */
+.alt_font{
+    font-family: var(--secondary_font);
+    font-weight: 500;
+}
+
+/* z-index */
+.index_1{
+    z-index: 1;
+}
 @media (max-width: 999px){
+    h1{
+        font-size: 30vw;
+    }
     h3{
-        font-size: 2.4vw;
+        font-size: 3vw;
+    }
+    h4{
+        font-size: 2.7vw;
     }
 }
 @media (max-width: 699px){
+    h1{
+        font-size: 35vw;
+    }
     h3{
-        font-size: 2.9vw;
+        font-size: 3.7vw;
+    }
+    h4{
+        font-size: 3.4vw;
     }
 }

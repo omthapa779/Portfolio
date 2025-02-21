@@ -12,10 +12,11 @@
     <link rel="stylesheet" href="util.css">
     <!-- extra css -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css">
     <link rel="shortcut icon" href="./resources/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <div class="loading-screen">
+    <div class="loading-screen hidden">
         <!-- Large grid overlay -->
         <div class="grid-overlay"></div>
         
@@ -31,9 +32,28 @@
     </div>
 
     <main class="w_100 h_fc">
-        <section class="hero_page w_100 h_100vh flex_cl justify_c align_c">
-            <div class="name_emoji_holder h_fc flex_cl">
+        <section class="hero_page w_100 h_100vh flex_cl justify_sb align_c">
+            <div class="name_emoji_holder h_fc flex align_fe position_r mright_5">
                 <h1 class="font_w900">OHM</h1>
+
+                <div class="emoji_holder w_100 h_40vh flex justify_fe position_a index_1">
+                  <img src="./resources/om_emoji.png" alt="Om Emoji" class="emoji h_100">
+                </div>
+            </div>
+
+            <div class="roles_section w_100 h_fc flex_cl justify_c align_c">
+                <div class="roles_holder h_fc text_ac w_20">
+                  <h3 class="w_100 text_al">Full Stack Developer</h3>
+                  <h3 class="w_100 text_ar">Graphic Designer</h3>
+                </div>
+            </div>
+
+            <div class="contents_holder w_100 h_fc flex_cl justify_c align_c">
+                <div class="button_holder h_fc flex gap_xs">
+                    <a href="#" class="primary_button flex justify_c align_c"><h4>Start Working</h4></a>
+                    <button class="secondary_s_button"><h4><i class="ri-menu-line"></i></h4></button>
+                </div>
+                <h4 class="works_hero w_25 text_ac mtop_s">Web App Development <span class="alt_font">Web Design</span> Graphic Design <span class="alt_font">Motion Graphics</span> Video Editing <span class="alt_font">Content Creation</span></h4>
             </div>
         </section>
     </main>
