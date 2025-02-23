@@ -305,20 +305,15 @@ html,body {
 }
 
 /* Base transition for all hero elements */
-.hero_page {
-    overflow: hidden;
-}
 .hero_page > * {
     will-change: transform, opacity, filter;
 }
 
 .liquid-text-container {
-    position: relative;
     display: inline-block;
-    overflow: hidden;
     opacity: 0;
-    transform: translateY(70px);
-    filter: blur(10px);
+    transform: translateY(7vh);
+    filter: blur(0.7vw);
     transition: opacity 0.85s cubic-bezier(0.215, 0.610, 0.355, 1.000),
                 transform 0.85s cubic-bezier(0.215, 0.610, 0.355, 1.000),
                 filter 0.85s cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -421,8 +416,8 @@ html,body {
 /* Animation Base Styles */
 .rise-element {
     opacity: 0;
-    transform: translateY(40px);
-    filter: blur(6px);
+    transform: translateY(7vh);
+    filter: blur(1vw);
     will-change: transform, opacity, filter;
     transition: opacity 0.85s cubic-bezier(0.215, 0.610, 0.355, 1.000),
                 transform 0.85s cubic-bezier(0.215, 0.610, 0.355, 1.000),

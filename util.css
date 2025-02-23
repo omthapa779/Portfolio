@@ -153,6 +153,12 @@ a{
 .index_1{
     z-index: 1;
 }
+
+/* overflows */
+.overflow_h{
+    overflow: hidden;
+}
+
 @media (max-width: 999px){
     h1{
         font-size: 30vw;
