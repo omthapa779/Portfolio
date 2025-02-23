@@ -323,6 +323,46 @@
             let textPixels = [];
             const text = "OHM";
             
+            function getScreenBasedValues() {
+                const width = window.innerWidth;
+                
+                // Use consistent sampling resolution across screen sizes
+                let sampleResolution;
+                if (width > 1400) {
+                    sampleResolution = Math.floor(width * 0.009);
+                } else if (width > 768) {
+                    sampleResolution = Math.floor(width * 0.01);
+                } else {
+                    sampleResolution = Math.floor(width * 0.008);
+                }
+                
+                // Consistent particle size ratio
+                const particleSize = sampleResolution * 1.5;
+                
+                // Increased influence radius for larger screens
+                const influenceRadius = width > 1400 ? 
+                    width * 0.08 :     // Doubled influence area for large screens
+                    width * 0.05;      // Original radius for other screens
+                    
+                // Adjusted push force for larger screens
+                const pushForce = width > 1400 ? 
+                    width * 0.005 :    // Increased force for large screens
+                    width * 0.005;     // Original force for other screens
+                    
+                // Slightly faster return speed for large screens to maintain snappiness
+                const returnSpeed = width > 1400 ? 
+                    0.09 :            // Slightly faster return for large screens
+                    0.1;
+                    
+                return {
+                    sampleResolution,
+                    influenceRadius,
+                    pushForce,
+                    returnSpeed,
+                    particleSize
+                };
+            }
+            
             function setupCanvas() {
                 canvas.width = container.offsetWidth;
                 canvas.height = container.offsetHeight;
@@ -347,11 +387,8 @@
                 
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
-                // Calculate sample resolution based on viewport width
-                const sampleResolution = Math.max(
-                    2, 
-                    Math.floor(window.innerWidth * 0.01)  // 1vw as base resolution
-                );
+                const { sampleResolution, particleSize } = getScreenBasedValues();
+                
                 textPixels = [];
                 
                 for (let y = 0; y < canvas.height; y += sampleResolution) {
@@ -363,7 +400,7 @@
                                 y: y,
                                 origX: x,
                                 origY: y,
-                                size: sampleResolution * 1.5  // Adjusted particle size
+                                size: particleSize
                             });
                         }
                     }
@@ -373,10 +410,7 @@
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
-                // Calculate influence radius based on viewport width
-                const influenceRadius = window.innerWidth * 0.05;  // 5vw
-                const pushForce = window.innerWidth * 0.005;      // 0.5vw
-                const returnSpeed = 0.1;
+                const { influenceRadius, pushForce, returnSpeed } = getScreenBasedValues();
                 
                 for (const pixel of textPixels) {
                     const dx = mouse.x - pixel.x;
@@ -403,10 +437,17 @@
                 requestAnimationFrame(animate);
             }
             
+            // Debounced mousemove handler
+            let moveTimeout;
             container.addEventListener('mousemove', (e) => {
-                const rect = canvas.getBoundingClientRect();
-                mouse.x = e.clientX - rect.left;
-                mouse.y = e.clientY - rect.top;
+                if (!moveTimeout) {
+                    moveTimeout = setTimeout(() => {
+                        const rect = canvas.getBoundingClientRect();
+                        mouse.x = e.clientX - rect.left;
+                        mouse.y = e.clientY - rect.top;
+                        moveTimeout = null;
+                    }, 5); // Small delay for smoother performance
+                }
             });
             
             container.addEventListener('mouseleave', () => {
@@ -414,14 +455,15 @@
                 mouse.y = -1000;
             });
             
-            setupCanvas();
-            animate();
-            
+            // Debounced resize handler
             let resizeTimeout;
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(setupCanvas, 250);
             });
+            
+            setupCanvas();
+            animate();
         }
 
         
