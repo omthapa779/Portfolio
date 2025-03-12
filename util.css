@@ -18,6 +18,10 @@ h1{
     font-family: var(--primary_font);
     font-size: 20vw;
 }
+h2{
+    font-family: var(--primary_font);
+    font-size: 3vw;
+}
 h3{
     font-family: var(--primary_font);
     font-size: 1.5vw;
@@ -80,6 +84,11 @@ a{
     display: flex;
     flex-direction: column;
 }
+.flex_c{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* justifys */
 .justify_c{
@@ -120,11 +129,22 @@ a{
 .gap_xs{
     gap: 0.5vw;
 }
+.gap_svh{
+    gap: 2vh;
+}
 
 /* paddings */
 .padding_vs{
     padding-top: 2vh;
     padding-bottom: 2vh;
+}
+.padding_v7{
+    padding-top: 7vh;
+    padding-bottom: 7vh;
+}
+.padding_s15{
+    padding-left: 15vw;
+    padding-right: 15vw;
 }
 
 /* positions */

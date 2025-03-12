@@ -10,11 +10,11 @@ html,body {
     background-color: var(--paper);
     overflow-x: hidden;
 }
-::selection{
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    border-radius: 0.8vw;
-}
+
+::selection {
+    background: var(--secondary-color);
+    color: var(--paper);
+  }
 :root {
     --paper: #f4f1ea;
     --text-color: #1a1a1a;
@@ -427,6 +427,31 @@ html,body {
     width: 60vw; 
     height: 35vh;
 }
+
+/* Text reveal animation styles */
+.reveal_split {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .reveal_split .line {
+    overflow: hidden;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+  }
+  
+  .reveal_split .line.revealed {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .reveal_split .line-wrapper {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding: 0.1em 0;
+  } 
 
 @media (max-width: 999px){
     .country{
