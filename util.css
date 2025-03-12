@@ -13,10 +13,21 @@
 .hidden {
     display: none;
 }
-
+.secondary_font{
+    font-family: var(--secondary_font) !important;
+}
+.font_w400{
+    font-weight: 400;
+}
+.line_h70{
+    line-height: 70%;
+}
+.secondary_cl{
+    color: var(--secondary-color);
+}
 h1{
     font-family: var(--primary_font);
-    font-size: 20vw;
+    font-size: 9vw;
 }
 h2{
     font-family: var(--primary_font);
@@ -40,6 +51,12 @@ a{
 }
 .w_25{
     width: 25vw;
+}
+.w_30{
+    width: 30vw;
+}
+.w_50{
+    width: 50vw;
 }
 .w_100{
     width: 100%;

@@ -503,6 +503,8 @@ window.addEventListener('resize', () => {
 initTextReveal();
 //cursor follower
 initCustomCursor();
+//parallax
+parallax();
 });
 
 function initTextReveal() {
@@ -590,3 +592,40 @@ autoRaf: true,
 lenis.on('scroll', (e) => {
 console.log(e);
 });
+
+
+function parallax(){
+    const parallaxElements = document.querySelectorAll('.parallax');
+  
+  // Function to update parallax effect
+  function updateParallax() {
+    parallaxElements.forEach(element => {
+      // Get the element's position relative to the viewport
+      const rect = element.getBoundingClientRect();
+      
+      // Check if element is in viewport
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        // Calculate how far the element is from the center of the viewport
+        const distanceFromCenter = (rect.top + rect.height/2) - window.innerHeight/2;
+        
+        // Calculate the parallax effect (adjust speed by changing the divisor)
+        const parallaxOffset = distanceFromCenter * 0.3;
+        
+        // Apply the transform with the calculated offset
+        element.style.transform = `translateY(${parallaxOffset}px)`;
+      }
+    });
+  }
+  
+  // Initial update
+  updateParallax();
+  
+  // Update on scroll
+  window.addEventListener('scroll', function() {
+    // Use requestAnimationFrame for better performance
+    window.requestAnimationFrame(updateParallax);
+  });
+  
+  // Update on window resize
+  window.addEventListener('resize', updateParallax);
+}
