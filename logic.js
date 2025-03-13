@@ -467,74 +467,72 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
-// Modified timing sequence
-setTimeout(() => {
-    scrambleNumber(latElement, FINAL_LAT);
-    scrambleNumber(longElement, FINAL_LONG);
-    prepareHeroElements();
-}, 1000);
-    
-setTimeout(() => {
-    zoomToKathmandu();
-}, 2500);
-    
-setTimeout(() => {
-        loadingScreen.classList.add('fade-out');
-}, 4000);
-    
-setTimeout(() => {
-    loadingScreen.style.display = 'none';
-    // Initialize liquid text effect
-    initLiquidEffect();
-    // Add animations-ready class after a small delay
+    // Modified timing sequence
     setTimeout(() => {
-        document.body.classList.add('animations-ready');
-    }, 100);
-}, 5500);
+        scrambleNumber(latElement, FINAL_LAT);
+        scrambleNumber(longElement, FINAL_LONG);
+        prepareHeroElements();
+    }, 1000);
+        
+    setTimeout(() => {
+        zoomToKathmandu();
+    }, 2500);
+        
+    setTimeout(() => {
+            loadingScreen.classList.add('fade-out');
+    }, 4000);
+        
+    setTimeout(() => {
+        loadingScreen.style.display = 'none';
+        // Initialize liquid text effect
+        initLiquidEffect();
+        // Add animations-ready class after a small delay
+        setTimeout(() => {
+            document.body.classList.add('animations-ready');
+        }, 100);
+    }, 5500);
 
-// Also re-initialize on window resize (in case of layout changes)
-let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(initTextReveal, 250);
-});
+    // Also re-initialize on window resize (in case of layout changes)
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(initTextReveal, 250);
+    });
 
-//mask split text reveal
-initTextReveal();
-//cursor follower
-initCustomCursor();
-//parallax
-parallax();
+    //mask split text reveal
+    initTextReveal();
+    //parallax
+    parallax();
 });
 
 function initTextReveal() {
-// Select all elements with reveal_split class
-const revealElements = document.querySelectorAll('.reveal_split');
-let lastScrollTop = 0;
-let scrollDirection = 'down';
+    // Select all elements with reveal_split class
+    const revealElements = document.querySelectorAll('.reveal_split');
+    let lastScrollTop = 0;
+    let scrollDirection = 'down';
 
-// Process each element
-revealElements.forEach(element => {
-  // Get the text content
-  const text = element.textContent;
-  // Clear the original content
-  element.innerHTML = '';
-  
-  // Split text by line breaks
-  const lines = text.split('\n').filter(line => line.trim() !== '');
-  
-  // For each line, create line elements
-  lines.forEach(line => {
-    const lineWrapper = document.createElement('div');
-    lineWrapper.className = 'line-wrapper';
+    // Process each element
+    revealElements.forEach(element => {
+    // Get the text content
+    const text = element.textContent;
+    // Clear the original content
+    element.innerHTML = '';
     
-    const lineElement = document.createElement('div');
-    lineElement.className = 'line';
-    lineElement.textContent = line.trim();
+    // Split text by line breaks
+    const lines = text.split('\n').filter(line => line.trim() !== '');
     
-    lineWrapper.appendChild(lineElement);
-    element.appendChild(lineWrapper);
-  });
+    // For each line, create line elements
+    lines.forEach(line => {
+        const lineWrapper = document.createElement('div');
+        lineWrapper.className = 'line-wrapper';
+        
+        const lineElement = document.createElement('div');
+        lineElement.className = 'line';
+        lineElement.textContent = line.trim();
+        
+        lineWrapper.appendChild(lineElement);
+        element.appendChild(lineWrapper);
+    });
 });
 
 // Detect scroll direction
@@ -629,3 +627,4 @@ function parallax(){
   // Update on window resize
   window.addEventListener('resize', updateParallax);
 }
+

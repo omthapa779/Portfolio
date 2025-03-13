@@ -432,26 +432,26 @@ html,body {
 .reveal_split {
     overflow: hidden;
     position: relative;
-  }
+}
   
-  .reveal_split .line {
-    overflow: hidden;
-    transform: translateY(100%);
-    opacity: 0;
-    transition: transform 0.8s ease, opacity 0.8s ease;
-  }
-  
-  .reveal_split .line.revealed {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  
-  .reveal_split .line-wrapper {
-    overflow: hidden;
-    display: block;
-    position: relative;
-    padding: 0.1em 0;
-  } 
+.reveal_split .line {
+  overflow: hidden;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.reveal_split .line.revealed {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.reveal_split .line-wrapper {
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding: 0.1em 0;
+} 
 
 @media (max-width: 999px){
     .country{
